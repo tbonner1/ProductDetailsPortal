@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Welcome <%= session.getAttribute("sessname") %></title>
+<title>Updated Product</title>
 </head>
 <body>
-	Welcome <%= session.getAttribute("sessname") %>. Please log-out below.
-	<br><br>
-	<a href="LogoutServlet">Logout</a>
+<%= session.getAttribute("sesname") %> has been updated in product. 
 </body>
 </html>

@@ -28,7 +28,7 @@
        
       </property>
       
-      <mapping class = "com.model.Registration"/>
+      <mapping class = "com.model.Product"/>
       
    </session-factory>
 </hibernate-configuration>
