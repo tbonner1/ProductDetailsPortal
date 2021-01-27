@@ -7,6 +7,6 @@
 <title>Valid Product</title>
 </head>
 <body>
-<%= session.getAttribute("sesname") %> has been registered to product. 
+<%= session.getAttribute("name") %> has been registered to product. ID: <%= session.getAttribute("id") %> Description: <%= session.getAttribute("description") %>
 </body>
 </html>

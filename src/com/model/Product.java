@@ -1,18 +1,11 @@
 package com.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-//Used to create the Product Table
-@Entity
 public class Product 
 {
-	@Id
 	private int id;
 	private String name;
 	private String description;
 	
-	@Override
 	public String toString() {
 		return "Product [id=" + id + ", name=" + name + ", description=" + description + "]";
 	}

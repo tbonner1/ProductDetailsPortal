@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.service.ProductService;
 
 @WebServlet("/ProductRegistrationServlet")
 public class ProductRegistrationServlet extends HttpServlet 
@@ -23,7 +22,7 @@ public class ProductRegistrationServlet extends HttpServlet
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		
-		//Validate the inputs and if they are successful, use productService to attempt to update/add a product
+		//Validate the inputs
 		if(!validID(id))
 		{
 			response.setContentType("text/html");
@@ -44,24 +43,12 @@ public class ProductRegistrationServlet extends HttpServlet
 		}
 		else
 		{
-			ProductService us = new ProductService();
-			com.model.Product pro = new com.model.Product(Integer.parseInt(id),name, description);
-			int validReg = us.product(pro);
+			HttpSession ses = request.getSession();
+			ses.setAttribute("id", request.getParameter("id"));
+			ses.setAttribute("name", request.getParameter("name"));
+			ses.setAttribute("description", request.getParameter("description"));
+			response.sendRedirect("validProduct.jsp");
 			
-			if(validReg == 0)
-			{
-				HttpSession ses = request.getSession();
-				ses.setAttribute("sesname", request.getParameter("name"));
-				response.sendRedirect("updatedProduct.jsp");
-			}
-			else if(validReg == 1) 
-			{
-				HttpSession ses = request.getSession();
-				ses.setAttribute("sesname", request.getParameter("name"));
-				response.sendRedirect("validProduct.jsp");
-			}
-			else
-				response.sendRedirect("invalidProduct.jsp");
 		}
 	}
 	
