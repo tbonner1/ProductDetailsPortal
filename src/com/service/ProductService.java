@@ -12,9 +12,11 @@ public class ProductService implements ProductDao
 	@Override
 	public int product(Product pro) 
 	{
-		Session session = HibernateUtility.getSession();
+		boolean add = false;
+		
 		try 
 		{
+			Session session = HibernateUtility.getSession();
 			Transaction tx = session.beginTransaction();
 			session.update(pro);
 			tx.commit();
@@ -23,18 +25,19 @@ public class ProductService implements ProductDao
 		{
 			try 
 			{
-				e.printStackTrace();
+				Session session = HibernateUtility.getSession();
 				Transaction tx = session.beginTransaction();
 				session.save(pro);
 				tx.commit();
-			}
+			} 
 			catch(Exception f)
 			{
-				f.printStackTrace();
 				return -1;
 			}
-			return 1;
+			add=true;
 		}
-		return 0;
+		if(!add)
+			return 0;
+		return 1;
 	}
 }
